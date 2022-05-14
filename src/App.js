@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Stack, Button } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container';
+import AddBudgetModal from './components/AddBudgetModal';
 // import Card from './components/Card';
 import BudgetCard from './components/BudgetCard';
 
@@ -8,30 +9,30 @@ function App() {
   const [active, setActive] = useState('FirstCard');
 
   return (
-    <Container className='my-4'>
-      <Stack direction="horizontal" gap="2" className="mb-4">
-        <h1 className="me-auto">Budgets</h1>
-        <Button variant="primary">Add Budget</Button>
-        <Button variant="outline-primary">Add Expense</Button>
-      </Stack>
-      <div 
-        style={{ 
-          display:"grid", 
-          gridTemplateColumsn: "repeat(auto-fill, minmax(300px, 1fr",
-          gap: '1rem', 
-          alignItems: 'flex-start' 
-        }} 
-      >
-        <BudgetCard name="Entertainment" gray amount={1100} max={1000} />
-      </div>
-      {/* <nav>
-        <h1>Budgets</h1>
-        <button>Add Budget</button>
-        <button>Add Expense</button>
-      </nav>
-       */}
-
-    </Container>
+    <>
+      <Container className='my-4'>
+        <Stack direction="horizontal" gap="2" className="mb-4">
+          <h1 className="me-auto">Budgets</h1>
+          <Button variant="primary">Add Budget</Button>
+          <Button variant="outline-primary">Add Expense</Button>
+        </Stack>
+        <div 
+          style={{ 
+            display:"grid", 
+            gridTemplateColumsn: "repeat(auto-fill, minmax(300px, 1fr",
+            gap: '1rem', 
+            alignItems: 'flex-start' 
+          }} 
+        >
+          <BudgetCard 
+            name="Entertainment" 
+            gray 
+            amount={1100} 
+            max={1000} />
+        </div>
+      </Container>
+      <AddBudgetModal show />
+    </>
   )
 }
 
