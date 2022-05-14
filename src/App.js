@@ -68,7 +68,7 @@ function App() {
       </button>
 
       {showBudgetEdit ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={updateBudget}>
           <button
             onClick={() => setShowBudgetEdit(!showBudgetEdit)}
           >&times;</button>
