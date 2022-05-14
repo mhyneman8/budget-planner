@@ -5,6 +5,7 @@ import AddBudgetModal from './components/AddBudgetModal';
 import AddExpenseModal from './components/AddExpenseModal';
 // import Card from './components/Card';
 import BudgetCard from './components/BudgetCard';
+import TotalBudgetCard from './components/TotalBudgetCard';
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard';
 import { useBudgets } from './contexts/BudgetsContext';
 
@@ -53,7 +54,8 @@ function App() {
               /> 
             )   
           })}
-          
+          <UncategorizedBudgetCard />
+          <TotalBudgetCard />
         </div>
       </Container>
       <AddBudgetModal 
@@ -65,7 +67,7 @@ function App() {
         show={showAddExpenseModal} 
         handleClose={() => setShowAddExpenseModal(false)} 
       />
-      <UncategorizedBudgetCard />
+      
 
     </>
   )
