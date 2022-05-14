@@ -55,7 +55,6 @@ function App() {
                 max={budget.max} 
                 onAddExpenseClick={() => openAddExpenseModal(budget.id)}
                 onViewExpensesClick={() => setViewExpensesModalBudgetId(budget.id)}
-
               /> 
             )   
           })}
@@ -77,7 +76,6 @@ function App() {
       />
       <ViewExpensesModal 
         budgetId={viewExpensesModalBudgetId}
-        show={false}
         handleClose={() => setViewExpensesModalBudgetId()} 
       />
       
