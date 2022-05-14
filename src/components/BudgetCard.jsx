@@ -23,7 +23,9 @@ export default function BudgetCard({ name, amount, max, gray, onAddExpenseClick 
       <Card.Body >
           <Card.Title className="d-flex justify-content-between align-items-baseline">
             <h1 className="me-2">{name}</h1>
-            <h2>{currencyFormatter.format(amount)} / {currencyFormatter.format(max)}</h2>
+            <h2>{currencyFormatter.format(amount)}
+                {max && <span> / {currencyFormatter.format(max)}</span>} 
+            </h2>
           </Card.Title>
         <ProgressBar 
             className="rounded-pill" 
