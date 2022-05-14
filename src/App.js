@@ -1,5 +1,6 @@
 // import './App.css';
 import { useState } from 'react';
+import Expense from './components/Expense';
 
 
 function App() {
@@ -24,6 +25,11 @@ function App() {
     localStorage.setItem("budget_amount", budget);
     alert("budget changed to $" + budget);
     setShow(!show);
+  }
+
+  const addExpenseComponent = () => {
+    console.log("expense button clicked");
+    <Expense budget={budget} setBudget={setBudget} />
   }
 
   const updateBudget = (e) => {
@@ -71,6 +77,15 @@ function App() {
           <input type="submit" value="Submit" />
         </form>
       ) : null}
+
+        <button
+          onClick={addExpenseComponent}
+        >
+          Add expense
+        </button>
+
+        <Expense setBudget={setBudget} budget={budget} />
+
     </div>
   );
 }
