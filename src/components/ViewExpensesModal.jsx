@@ -28,10 +28,14 @@ export default function ViewExpensesModal({
                             <div className="fs-5">{currencyFormatter.format(expense.amount)}</div>
                             
                             { editBudgetExpenses ? (
-                                <Button
-                                    onClick={() => deleteExpense(expense)}
-                                    size="sm" varient="outline-danger">&times;
-                                </Button>
+                                <>
+                                    
+                                    <Button
+                                        onClick={() => deleteExpense(expense)}
+                                        size="sm" varient="outline-danger">&times;
+                                    </Button>
+                                </>
+                                
                             ) : null }
                             
 

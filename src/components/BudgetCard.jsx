@@ -64,31 +64,42 @@ export default function BudgetCard({
           <Card.Title className="d-flex justify-content-between align-items-baseline">
             <h1 className="me-2">{name}</h1>
             <h2>{currencyFormatter.format(amount)}
-            <Button onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}>Edit</Button>
-                {/* {max && <span> / {currencyFormatter.format(max)}</span>}  */}
-                { editBudgetExpenses ? (
-                    <Button onClick={() => {
-                        if(window.confirm('Are you sure you want to delete this category?')) {
-                            deleteBudget(budget)
-                            handleClose() 
-                        }
-                        // confirmDelete(budget)
-                        
-                    }} variant="outline-danger" >
-                        Delete
-                    </Button>
-                ) : null}
+            
+            {/* {max && <span> / {currencyFormatter.format(max)}</span>}  */}
+            { editBudgetExpenses ? (
+                <Button onClick={() => {
+                    if(window.confirm('Are you sure you want to delete this category?')) {
+                        deleteBudget(budget)
+                        handleClose() 
+                    }
+                    // confirmDelete(budget)
+                    
+                }} variant="outline-danger" >
+                    Delete
+                </Button>
+            ) : (
+                <Button onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}>
+                    Edit
+                </Button>
+            )}
                 
             </h2>
           </Card.Title>
 
           <ViewExpensesModal editBudgetExpenses={editBudgetExpenses} setEditBudgetExpenses={setEditBudgetExpenses} budgetId={budgetId} />
         { editBudgetExpenses ? (
-            <Button
-                onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}
-            >
-                Save
-            </Button>
+            <>
+                <Button
+                    onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}
+                >
+                    Save
+                </Button>
+                <Button
+                    onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}
+                >
+                    Cancel
+                </Button>
+            </>
         ) : null}
         
         
