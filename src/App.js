@@ -75,12 +75,11 @@ function App() {
         show={showAddExpenseModal} 
         handleClose={() => setShowAddExpenseModal(false)} 
       />
-      <ViewExpensesModal 
+      {/* <ViewExpensesModal 
         budgetId={viewExpensesModalBudgetId}
         handleClose={() => setViewExpensesModalBudgetId()} 
-      />
+      /> */}
       
-
     </>
   )
 }

@@ -122,12 +122,12 @@ export default function BudgetCard({
                 >
                     Add Expense
                 </Button>
-                <Button
+                {/* <Button
                     onClick={onViewExpensesClick}
                     variant="outline-secondary"
                 >
                     View Expenses
-                </Button>
+                </Button> */}
             </Stack> 
         )}
       </Card.Body>
