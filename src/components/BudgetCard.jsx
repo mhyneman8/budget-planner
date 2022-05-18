@@ -94,9 +94,9 @@ export default function BudgetCard({
         
         { name === "Total" && 
             <>
-                <caption className='fs-4 d-inline'>
+                <p className='fs-4 d-inline'>
                     {currencyFormatter.format(totalExpenses)} of {currencyFormatter.format(income)}
-                </caption>
+                </p>
                 <ProgressBar 
                     className="rounded-pill" 
                     min={0}
