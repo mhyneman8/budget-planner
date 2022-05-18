@@ -20,13 +20,12 @@ export default function AddBudgetModal({ show, handleClose }) {
     return (
     <Modal show={show}>
         <Form onSubmit={handleSubmit}>
-            <Modal.Header>
-                <img src={woman_money_phone} alt="" className='img-fluid mx-auto' />
-                {/* <img alt="" src={require('../woman_money_phone.svg')} /> */}
-                {/* <Modal.Title>New Budget</Modal.Title> */}
-            </Modal.Header>
-            <Modal.Body>
-                <Form.Group className="mb-3" controlId="name">
+            <Modal.Body >
+                <div className='text-center m-3'>
+                    <img src={woman_money_phone} alt="" className='img-fluid ' />
+                </div>
+
+                <Form.Group className="mb-3 text-left" controlId="name">
                     <Form.Label>Add Category Type</Form.Label>
                     <Form.Control ref={nameRef} type="text" required />
                 </Form.Group>
