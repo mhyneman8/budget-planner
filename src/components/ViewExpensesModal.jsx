@@ -31,7 +31,7 @@ export default function ViewExpensesModal({
                                 <>
                                     <Button
                                         onClick={() => deleteExpense(expense)}
-                                        size="sm" varient="outline-danger"
+                                        size="sm" varient="" className='btn-light'
                                     >
                                         &times;
                                     </Button>
