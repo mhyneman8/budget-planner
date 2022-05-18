@@ -33,10 +33,13 @@ export default function AddBudgetModal({ show, handleClose }) {
                     <Form.Label>Maximum Spending</Form.Label>
                     <Form.Control ref={maxRef} type="number" required min={0} step={0.01} />
                 </Form.Group> */}
-                <div className='d-flex justify-content-end'>
-                    <Button variant="primary-outline" type="back" onClick={handleClose}>Back</Button>
-
-                    <Button variant="primary" type="submit">Add</Button>
+                <div className='d-flex p-3 justify-content-between'>
+                    <Button variant="" className='btn btn-outline-primary' type="back" onClick={handleClose}>
+                        Back
+                    </Button>
+                    <Button variant="primary" type="submit" className='btn'>
+                        Add
+                    </Button>
                 </div>
             </Modal.Body>
         </Form>
