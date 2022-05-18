@@ -4,7 +4,7 @@ import { useBudgets, UNCATEGORIZED_BUDGET_ID } from '../contexts/BudgetsContext'
 import { currencyFormatter } from './utils';
 
 export default function ViewExpensesModal({ 
-    budgetId, handleClose, editBudgetExpenses, setEditBudgetExpenses 
+    budgetId, handleClose, editBudgetExpenses, setEditBudgetExpenses
 }) {
     const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } = useBudgets();
     // const [editBudget, setEditBudget] = useState(false);
@@ -15,35 +15,32 @@ export default function ViewExpensesModal({
         : budgets.find(b => b.id === budgetId)
 
     return (
-        <Card>
-            <Card.Body>
+       
+            <div>
                 <Stack direction="vertical" gap="1">
-                    <p>{expenses.id}</p>
+                    {/* <p>{expenses.id}</p>
                     {console.log(expenses)}
-                    {console.log("budgetId: " + budgetId)}
-
+                    {console.log("budgetId: " + budgetId)} */}
+                    
                     {expenses.map(expense => (
-                        <Stack direction="horizontal" gap="2" key={expense.id}>
+                        <Stack direction="horizontal" gap="2" key={expense.id} className="mb-3">
                             <div className="me-auto fs-4">{expense.description}</div>
                             <div className="fs-5">{currencyFormatter.format(expense.amount)}</div>
                             
                             { editBudgetExpenses ? (
                                 <>
-                                    
                                     <Button
                                         onClick={() => deleteExpense(expense)}
-                                        size="sm" varient="outline-danger">&times;
+                                        size="sm" varient="outline-danger"
+                                    >
+                                        &times;
                                     </Button>
                                 </>
-                                
                             ) : null }
-                            
-
                         </Stack>
                     ))}
                 </Stack>
-            </Card.Body>
-        </Card>
-    
-  )
+                </div>
+           
+    )
 }
