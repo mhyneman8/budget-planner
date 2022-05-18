@@ -39,8 +39,8 @@ function App() {
         <div 
           style={{ 
             display:"grid", 
-            gridTemplateColumsn: "repeat(auto-fill, minmax(300px, 1fr",
-            gap: '1rem', 
+            gridTemplateColumns: "repeat(auto-fill, minmax(342px, 1fr))",
+            gap: '2rem', 
             alignItems: 'flex-start' 
           }} 
         >
@@ -59,11 +59,11 @@ function App() {
               /> 
             )   
           })}
-          <UncategorizedBudgetCard 
+          {/* <UncategorizedBudgetCard 
             onAddExpenseClick={openAddExpenseModal} 
             onViewExpensesClick={() => setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)}
-          />
-          <TotalBudgetCard />
+          /> */}
+          <TotalBudgetCard hideExpense />
         </div>
       </Container>
       <AddBudgetModal 
