@@ -1,18 +1,24 @@
-import { useBudgets } from "../contexts/BudgetsContext"
+import { useBudgets, } from "../contexts/BudgetsContext"
 import BudgetCard from "./BudgetCard"
 
 export default function TotalBudgetCard(props) {
-    const { expenses, budgets } = useBudgets();
-    const amount = expenses.reduce(
-        (total, expense) => total + expense.amount, 0
-    )
-    const max = budgets.reduce(
-        (total, budget) => total + budget.max, 0
-    )
+    const { expenses, budgets, getBudgetExpenses } = useBudgets();
+    const incomeBudget = budgets.find(({ name }) => name === "Income")
+    const incomeExpenses = getBudgetExpenses(incomeBudget.id)
+    const amountTotal = (expenses.reduce((total, expense) => total + expense.amount, 0))
+    
+    let totalExpenses = 0;
+    let income = 0;
 
-    if (amount === 0 ) return null
+    for(let i = 0; i < incomeExpenses.length; i++) {
+        income += incomeExpenses[i].amount
+    }
+
+    totalExpenses = amountTotal - income;
+
+    if (income === 0 ) return null
     return (
-        <BudgetCard name="Total" amount={amount} gray max={max} hideButtons />
+        <BudgetCard name="Total" income={income} totalExpenses={totalExpenses} hideExpenses hideButtons />
     )
 }
 

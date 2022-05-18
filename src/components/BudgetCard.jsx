@@ -8,34 +8,20 @@ import ViewExpensesModal from "./ViewExpensesModal";
 
 export default function BudgetCard({ 
     name, 
-    amount, 
-    max, 
-    gray, 
     onAddExpenseClick,
     hideButtons,
-    onViewExpensesClick,
     budgetId,
-    handleClose
+    handleClose,
+    hideExpenses,
+    income,
+    totalExpenses
 }) {
     const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } = useBudgets();
     const [editBudgetExpenses, setEditBudgetExpenses] = useState(false)
     const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? 
         { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID } 
-        : budgets.find(b => b.id === budgetId)
+        : budgets.find(b => b.id === budgetId);
 
-    const classNames = [];
-    if (amount > max) {
-        classNames.push("bg-danger", "bg-opacity-10");
-    } else if (gray) {
-        classNames.push("bg-light");
-    }
-
-    function getProgressBarVariant(amount, max) {
-        const ratio = amount / max;
-        if (ratio < 0.5) return "primary";
-        if (ratio < 0.75) return "warning";
-        return "danger"
-    }
 
     // TODO get confirm delete to work, budget doesn't show up, but budget.id does
     // function confirmDelete(budget) {
@@ -59,58 +45,73 @@ export default function BudgetCard({
     // };
 
   return (
-    <Card className={classNames.join(" ")}>
+    <Card className="shadow p-3 rounded">
       <Card.Body >
           <Card.Title className="d-flex justify-content-between align-items-baseline">
-            <h1 className="me-2">{name}</h1>
-            <h2>{currencyFormatter.format(amount)}
+            <h2 className="me-2">{name}</h2>
+            {/* <h2> */}
+                {/* {currencyFormatter.format(amount)} */}
             
             {/* {max && <span> / {currencyFormatter.format(max)}</span>}  */}
+            
+            {/* Toggles between cancel and edit buttons */}
             { editBudgetExpenses ? (
-                <Button onClick={() => {
-                    if(window.confirm('Are you sure you want to delete this category?')) {
-                        deleteBudget(budget)
-                        handleClose() 
-                    }
-                    // confirmDelete(budget)
-                    
-                }} variant="outline-danger" >
-                    Delete
+                <Button
+                onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}
+                >
+                    Cancel
                 </Button>
+                
             ) : (
                 <Button onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}>
                     Edit
                 </Button>
-            )}
-                
-            </h2>
+            )} 
+            {/* </h2> */}
           </Card.Title>
 
-          <ViewExpensesModal editBudgetExpenses={editBudgetExpenses} setEditBudgetExpenses={setEditBudgetExpenses} budgetId={budgetId} />
+        {/* hides expenses on total card */}
+        { !hideExpenses && (
+            <ViewExpensesModal 
+                editBudgetExpenses={editBudgetExpenses} 
+                setEditBudgetExpenses={setEditBudgetExpenses} 
+                budgetId={budgetId} 
+            />
+        )}
+
+        {/* shows close and delete button after edit button has been clicked */}
         { editBudgetExpenses ? (
-            <>
-                <Button
+            <div className='d-flex justify-content-end'>
+                <Button className='m-2'
                     onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}
                 >
-                    Save
+                    Close
                 </Button>
-                <Button
-                    onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}
-                >
-                    Cancel
+                <Button className='m-2' onClick={() => {
+                    if(window.confirm('Are you sure you want to delete this category?')) {
+                        deleteBudget(budget)
+                        handleClose() 
+                    }
+                }} variant="outline-danger" >
+                    Delete Category
                 </Button>
-            </>
+            </div>
         ) : null}
         
         
-        {max && 
-            <ProgressBar 
-                className="rounded-pill" 
-                variant={getProgressBarVariant(amount, max)}
-                min={0}
-                max={max}
-                now={amount}
-            />
+        { name === "Total" && 
+            <>
+                <caption className='fs-4 d-inline'>
+                    {currencyFormatter.format(totalExpenses)} of {currencyFormatter.format(income)}
+                </caption>
+                <ProgressBar 
+                    className="rounded-pill" 
+                    min={0}
+                    max={income}
+                    now={totalExpenses}
+                />
+            </>
+            
         }
         
         { !hideButtons && (
@@ -122,12 +123,6 @@ export default function BudgetCard({
                 >
                     Add Expense
                 </Button>
-                {/* <Button
-                    onClick={onViewExpensesClick}
-                    variant="outline-secondary"
-                >
-                    View Expenses
-                </Button> */}
             </Stack> 
         )}
       </Card.Body>
