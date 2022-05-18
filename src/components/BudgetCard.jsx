@@ -16,7 +16,7 @@ export default function BudgetCard({
     income,
     totalExpenses
 }) {
-    const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } = useBudgets();
+    const { budgets, deleteBudget} = useBudgets();
     const [editBudgetExpenses, setEditBudgetExpenses] = useState(false)
     const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? 
         { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID } 
@@ -49,10 +49,6 @@ export default function BudgetCard({
       <Card.Body >
           <Card.Title className="d-flex justify-content-between align-items-baseline">
             <h2 className="me-2">{name}</h2>
-            {/* <h2> */}
-                {/* {currencyFormatter.format(amount)} */}
-            
-            {/* {max && <span> / {currencyFormatter.format(max)}</span>}  */}
             
             {/* Toggles between cancel and edit buttons */}
             { editBudgetExpenses ? (
@@ -61,13 +57,11 @@ export default function BudgetCard({
                 >
                     Cancel
                 </Button>
-                
             ) : (
                 <Button onClick={() => setEditBudgetExpenses(!editBudgetExpenses)}>
                     Edit
                 </Button>
             )} 
-            {/* </h2> */}
           </Card.Title>
 
         {/* hides expenses on total card */}
@@ -98,7 +92,6 @@ export default function BudgetCard({
             </div>
         ) : null}
         
-        
         { name === "Total" && 
             <>
                 <caption className='fs-4 d-inline'>
@@ -111,7 +104,6 @@ export default function BudgetCard({
                     now={totalExpenses}
                 />
             </>
-            
         }
         
         { !hideButtons && (
