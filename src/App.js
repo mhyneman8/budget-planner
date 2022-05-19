@@ -7,6 +7,7 @@ import AddBudgetModal from './components/AddBudgetModal';
 import AddExpenseModal from './components/AddExpenseModal';
 import BudgetCard from './components/BudgetCard';
 import TotalBudgetCard from './components/TotalBudgetCard';
+import TotalBarChart from './components/TotalBarChart';
 import ViewExpensesModal from './components/ViewExpensesModal';
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard';
 
@@ -46,12 +47,12 @@ function App() {
           }} 
         >
           {budgets.map(budget => {
-            const amount = getBudgetExpenses(budget.id).reduce((total, expense) => total + expense.amount, 0)
+            // const amount = getBudgetExpenses(budget.id).reduce((total, expense) => total + expense.amount, 0)
             return (
               <BudgetCard 
                 key={budget.id}
                 name={budget.name} 
-                amount={amount} 
+                // amount={amount} 
                 max={budget.max} 
                 onAddExpenseClick={() => openAddExpenseModal(budget.id)}
                 onViewExpensesClick={() => setViewExpensesModalBudgetId(budget.id)}
@@ -64,7 +65,8 @@ function App() {
             onAddExpenseClick={openAddExpenseModal} 
             onViewExpensesClick={() => setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)}
           /> */}
-          <TotalBudgetCard hideExpense />
+          <TotalBudgetCard  />
+          <TotalBarChart />
         </div>
       </Container>
       <AddBudgetModal 
