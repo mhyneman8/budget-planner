@@ -3,7 +3,7 @@ import BudgetCard from "./BudgetCard"
 
 export default function TotalBudgetCard(props) {
     const { expenses, budgets, getBudgetExpenses } = useBudgets();
-    const incomeBudget = budgets && budgets.find(({ name }) => name === "Income")
+    const incomeBudget = budgets && budgets.find(({ name }) => name === "Income" || name === "income")
     const incomeExpenses = incomeBudget ? getBudgetExpenses(incomeBudget.id) : [];
     const amountTotal = (expenses.reduce((total, expense) => total + expense.amount, 0))
     
