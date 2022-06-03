@@ -61,10 +61,6 @@ function App() {
               /> 
             )   
           })}
-          {/* <UncategorizedBudgetCard 
-            onAddExpenseClick={openAddExpenseModal} 
-            onViewExpensesClick={() => setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)}
-          /> */}
           <TotalBudgetCard  />
           <TotalBarChart />
         </div>
@@ -78,10 +74,6 @@ function App() {
         show={showAddExpenseModal} 
         handleClose={() => setShowAddExpenseModal(false)} 
       />
-      {/* <ViewExpensesModal 
-        budgetId={viewExpensesModalBudgetId}
-        handleClose={() => setViewExpensesModalBudgetId()} 
-      /> */}
       
     </>
   )

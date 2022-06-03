@@ -2,8 +2,9 @@ import { Modal, Form, Button, Image } from 'react-bootstrap';
 import { useRef } from 'react';
 import { useBudgets } from '../contexts/BudgetsContext';
 import woman_money_phone from '../Assets/woman_money_phone.svg';
+import AddExpenseModal from './AddExpenseModal';
 
-export default function AddBudgetModal({ show, handleClose }) {
+export default function AddBudgetModal({ show, handleClose, addExpenseModalBudgetId, setShowAddExpenseModal }) {
     const nameRef = useRef();
     // const maxRef = useRef();
     const { addBudget } = useBudgets();
@@ -33,6 +34,13 @@ export default function AddBudgetModal({ show, handleClose }) {
                     <Form.Label>Maximum Spending</Form.Label>
                     <Form.Control ref={maxRef} type="number" required min={0} step={0.01} />
                 </Form.Group> */}
+
+                <AddExpenseModal
+                    defaultBudgetId={addExpenseModalBudgetId}
+                    // show={showAddExpenseModal} 
+                    handleClose={() => setShowAddExpenseModal(false)} 
+                    />
+
                 <div className='d-flex p-3 justify-content-between'>
                     <Button variant="" className='btn btn-outline-primary' type="back" onClick={handleClose}>
                         Back

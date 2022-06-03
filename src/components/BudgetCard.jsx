@@ -3,9 +3,7 @@ import { Card, Stack, Button, ProgressBar } from "react-bootstrap";
 import { currencyFormatter } from "./utils";
 import { useBudgets, UNCATEGORIZED_BUDGET_ID } from '../contexts/BudgetsContext';
 import ViewExpensesModal from "./ViewExpensesModal";
-import { Bar } from 'react-chartjs-2'
-// import { confirmAlert } from "react-confirm-alert";
-// import 'react-confirm-alert/src/react-confirm-alert.css';
+import { Bar } from 'react-chartjs-2';
 
 export default function BudgetCard({ 
     name, 
@@ -24,53 +22,11 @@ export default function BudgetCard({
         { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID } 
         : budgets.find(b => b.id === budgetId);
 
-    // const Labels = budgets.map(budget => budget.name);
-    
-    // const dataVal = (expenses.map(expense => expense.amount))
-        // 
-        // expenses.map(expense => expense.amount)
-    
-    // const ChartData = {
-    //     labels: Labels,
-    //     dataset: [
-    //         {
-    //             label: "test",
-    //             backgrounColor: 'white',
-    //             borderColor: 'black',
-    //             borderWidth: 1,
-    //             data: dataVal
-    //         }
-    //     ]
-    // }
-
-    // TODO get confirm delete to work, budget doesn't show up, but budget.id does
-    // function confirmDelete(budget) {
-    //     confirmAlert({
-    //         title: `Confirm delete ${budget}`,
-    //         message: 'Are you sure you want to delete this? ',
-    //         buttons: [
-    //             {
-    //                 label: 'Delete',
-    //                 onClick: () => {
-    //                     deleteBudget(budget) 
-    //                     handleClose()
-    //                 }
-    //             },
-    //             {
-    //                 label: 'Cancel',
-    //                 onClick: null
-    //             }
-    //         ]
-    //     })
-    // };
-
   return (
     <Card className="shadow p-3 rounded">
       <Card.Body >
           <Card.Title className="d-flex justify-content-between align-items-baseline">
             <h2 className="me-2">{name}</h2>
-
-            {/* {console.log("amount: " + dataVal)} */}
 
             {/* Toggles between cancel and edit buttons */}
             { editBudgetExpenses ? (
@@ -138,24 +94,31 @@ export default function BudgetCard({
                 <p className='fs-4 d-inline'>
                     {currencyFormatter.format(totalExpenses)} of {currencyFormatter.format(income)}
                 </p>
-                {/* <p>{Labels}</p>
-                {console.log(budgets.amount)}
-                <Bar  
-                    data={ChartData}
-                    style={{ maxHeight: '600px'}}
-                /> */}
             </>
         }
         
         { !hideButtons && (
             <Stack direction="horizontal" gap="2" className="mt-4">
-                <Button 
-                    variant="outline-primary" 
-                    className="ms-auto" 
-                    onClick={onAddExpenseClick}
-                >
-                    Add Expense
-                </Button>
+                { budget.id !== '1' ? 
+                    <Button 
+                        variant="outline-primary" 
+                        className="ms-auto" 
+                        onClick={onAddExpenseClick}
+                    >
+                        Add Expense
+                        
+                    </Button>
+                : (
+                    <Button 
+                        variant="outline-primary" 
+                        className="ms-auto" 
+                        onClick={onAddExpenseClick}
+                    >
+                        Add Asset
+                        {console.log(budget.id)}
+                    </Button>
+                )
+                 }
             </Stack> 
         )}
       </Card.Body>
