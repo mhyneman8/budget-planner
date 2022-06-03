@@ -23,6 +23,9 @@ This budget feature is designed for a current fintech app that wants to launch a
 ![Homepage Screenshot](src/Assets/screenshotBottom.jpg)
 
 
+## View Live Site
+[Budget Planner](https://mhyneman8.github.io/budget-planner/)
+
 ## Run Locally
 
 Clone the project
