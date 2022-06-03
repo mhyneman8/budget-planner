@@ -24,7 +24,7 @@ This budget feature is designed for a current fintech app that wants to launch a
 
 
 ## View Live Site
-[Budget Planner](https://mhyneman8.github.io/budget-planner/)
+[Budget Planner](https://mhyneman8.github.io/budget-planner/){:target="_blank"}
 
 ## Run Locally
 
